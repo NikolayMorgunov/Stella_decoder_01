@@ -1,16 +1,43 @@
-# This is a sample Python script.
+from scipy.io.wavfile import read
+import numpy as np
+import scipy.signal as sign
+import matplotlib.pyplot as plt
+from hilbert import *
+from draw_a_pic import *
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+file = 'signal.WAV'
+
+samplerate, data = read(file)
+data_crop = data[220 * samplerate: 221 * samplerate]
+
+fig = plt.figure()
+
+# plt.plot(data_crop)
+plt.xlabel("Samples")
+plt.ylabel("Amplitude")
+plt.title("Signal")
+new_sample = 2080
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+data_am_crop = hilbert(data_crop)
+data_am = hilbert(data)
+
+new_fs = 2080
+number_of_samples = round(len(data_am) * float(new_fs)/samplerate)
+data_ready = sign.resample(data_am, number_of_samples)
+samplerate = new_fs
+
+# plt.plot(data_am)
+
+# resample = 4
+# data_am = data_am[::resample]
+# samplerate = samplerate // resample
+
+# data_ready = []
+# for i in range(0, len(data_am), new_sample):
+#     data_ready.append(data_am[i])
+# samplerate = new_sample
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+draw(samplerate, data_ready)
