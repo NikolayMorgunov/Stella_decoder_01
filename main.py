@@ -18,9 +18,9 @@ plt.ylabel("Amplitude")
 plt.title("Signal")
 new_sample = 2080
 
-
-data_am_crop = hilbert(data_crop)
-data_am = hilbert(data)
+data_am = data.copy()
+# data_am_crop = hilbert(data_crop)
+data_am = hilbert(data_am)
 
 new_fs = 2080
 number_of_samples = round(len(data_am) * float(new_fs)/samplerate)

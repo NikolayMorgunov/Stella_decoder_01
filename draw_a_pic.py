@@ -21,5 +21,5 @@ def draw(fs, data_am):
             py += 1
             if py >= h:
                 break
-    image = image.resize((4 * w, h))
+    image = image.resize((2 * w, h))
     image.save('Izobrazhenie so spootnika.png')
