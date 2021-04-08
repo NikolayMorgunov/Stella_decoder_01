@@ -9,7 +9,7 @@ def draw(fs, data_am):
 
     px, py = 0, 0
     for p in range(len(data_am)):
-        lum = int(data_am[p] // 32 - 32)
+        lum = int(data_am[p])
         if lum < 0: lum = 0
         if lum > 255: lum = 255
         image.putpixel((px, py), (lum, lum, lum))
@@ -21,5 +21,7 @@ def draw(fs, data_am):
             py += 1
             if py >= h:
                 break
-    image = image.resize((2 * w, h))
+    image = image.resize((w, 3 * h))
+    # for i in range(w):
+    #     print(255 * data_am[501 * w + i] // max_d)
     image.save('Izobrazhenie so spootnika.png')

@@ -1,31 +1,17 @@
 from scipy.io.wavfile import read
 import numpy as np
 import scipy.signal as sign
-import matplotlib.pyplot as plt
 from hilbert import *
 from draw_a_pic import *
+from synchro import *
 
 file = 'signal.WAV'
 
 samplerate, data = read(file)
-data_crop = data[220 * samplerate: 221 * samplerate]
-
-fig = plt.figure()
-
-# plt.plot(data_crop)
-plt.xlabel("Samples")
-plt.ylabel("Amplitude")
-plt.title("Signal")
-new_sample = 2080
 
 data_am = data.copy()
 # data_am_crop = hilbert(data_crop)
 data_am = hilbert(data_am)
-
-new_fs = 2080
-number_of_samples = round(len(data_am) * float(new_fs)/samplerate)
-data_ready = sign.resample(data_am, number_of_samples)
-samplerate = new_fs
 
 # plt.plot(data_am)
 
@@ -39,5 +25,5 @@ samplerate = new_fs
 # samplerate = new_sample
 
 
-
-draw(samplerate, data_ready)
+data_am = find_synchro(samplerate, data_am)
+draw(samplerate, data_am)
