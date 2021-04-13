@@ -25,5 +25,8 @@ data_am = hilbert(data_am)
 # samplerate = new_sample
 
 
+max_d = max(data_am)
+data_am = [i * 255 // max_d for i in data_am]
 data_am = find_synchro(samplerate, data_am)
+
 draw(samplerate, data_am)

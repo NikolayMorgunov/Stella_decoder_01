@@ -22,6 +22,12 @@ def draw(fs, data_am):
             if py >= h:
                 break
     image = image.resize((w, 3 * h))
-    # for i in range(w):
-    #     print(255 * data_am[501 * w + i] // max_d)
+    for i in range(w):
+         print(data_am[200 * w + i])
+    print()
+    print()
+    print()
+    print()
+    for i in range(w):
+         print(data_am[1000 * w + i])
     image.save('Izobrazhenie so spootnika.png')
