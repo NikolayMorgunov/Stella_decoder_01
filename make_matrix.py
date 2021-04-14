@@ -3,7 +3,7 @@ def to_matrix(fs, data):
     w, h = frame_width, len(data) // frame_width
     matrix = []
 
-    for i in range(h):
+    for i in range(314, 653):
         cur = []
         for j in range(w):
             cur.append(data[i * w + j])
